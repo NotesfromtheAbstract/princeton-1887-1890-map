@@ -132,15 +132,7 @@ L.geoJSON(PERIOD,{
 L.geoJSON(PERIOD,{filter:f=>f.properties.kind==='rail',
   style:{color:'#1c1c1c',weight:6,opacity:1,dashArray:'1.5,7',lineCap:'butt'},
   onEachFeature:(f,l)=>{paths.push(l);}}).addTo(periodGroup);
-// mountain contour rings
-const mw=[42.48906,-71.88684];
-[300,600,900,1300].forEach((r,i)=>{
-  const c=L.circle(mw,{radius:r,color:['#b79c6a','#c0a97c','#c9b58a','#d3c199'][i],weight:1,fill:false,opacity:1});
-  paths.push(c); periodGroup.addLayer(c);
-});
-// common
-const common=L.rectangle([[42.44845,-71.87855],[42.44965,-71.87635]],{color:'#6b4a2b',weight:1,fillColor:'#cdd7bd',fillOpacity:.85});
-paths.push(common); periodGroup.addLayer(common);
+// (real elevation contours and the town Common are rendered from the GeoJSON above)
 // period text labels
 function label(lat,lon,txt,cls){L.marker([lat,lon],{interactive:false,icon:L.divIcon({className:'maplabel '+(cls||''),html:txt,iconSize:[0,0]})}).addTo(periodGroup);}
 label(42.4905,-71.8868,'MT. WACHUSETT','pk');
